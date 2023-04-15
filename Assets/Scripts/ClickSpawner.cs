@@ -11,6 +11,7 @@ public class ClickSpawner: MonoBehaviour {
     [SerializeField] protected InputAction spawnAction = new InputAction(type: InputActionType.Button);
     [SerializeField] protected GameObject prefabToSpawn;
     [SerializeField] protected Vector3 velocityOfSpawnedObject;
+    [SerializeField] protected Vector3 offsetPositionOfSpawnedObject;
 
     void OnEnable()  {
         spawnAction.Enable();
@@ -25,6 +26,7 @@ public class ClickSpawner: MonoBehaviour {
 
         // Step 1: spawn the new object.
         Vector3 positionOfSpawnedObject = transform.position;  // span at the containing object position.
+        positionOfSpawnedObject += offsetPositionOfSpawnedObject;
         Quaternion rotationOfSpawnedObject = Quaternion.identity;  // no rotation.
         GameObject newObject = Instantiate(prefabToSpawn, positionOfSpawnedObject, rotationOfSpawnedObject);
 
